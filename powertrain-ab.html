@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>汽车动力总成 A / B 方案直连秒播对比 · 晓晓2代 HD Flash</title>
+  <style>
+    :root {
+      --bg: #070a10;
+      --panel: #101622;
+      --panel-2: #151d2e;
+      --border: rgba(148, 163, 184, 0.16);
+      --text: #f1f5f9;
+      --muted: #94a3b8;
+      --cyan: #22d3ee;
+      --amber: #f59e0b;
+      --emerald: #10b981;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: radial-gradient(circle at 50% 0%, #111b2e 0%, var(--bg) 60%);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+      min-height: 100vh;
+      padding: 20px 16px 56px;
+      line-height: 1.5;
+    }
+    .container {
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+    header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 18px;
+    }
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    .badge {
+      font-size: 12px;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 999px;
+      background: rgba(34, 211, 238, 0.12);
+      color: var(--cyan);
+      border: 1px solid rgba(34, 211, 238, 0.28);
+    }
+    .badge.emerald {
+      background: rgba(16, 185, 129, 0.12);
+      color: var(--emerald);
+      border-color: rgba(16, 185, 129, 0.3);
+    }
+    h1 {
+      font-size: clamp(20px, 3.2vw, 28px);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+    .sub {
+      color: var(--muted);
+      font-size: 13.5px;
+      margin-top: 4px;
+    }
+    .chapters {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px 14px;
+      margin-bottom: 20px;
+    }
+    .chapters-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 10px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .chapter-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .chip {
+      appearance: none;
+      border: 1px solid var(--border);
+      background: var(--panel-2);
+      color: var(--text);
+      font-size: 12.5px;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .chip:hover, .chip:active {
+      border-color: var(--cyan);
+      color: var(--cyan);
+      background: rgba(34, 211, 238, 0.1);
+    }
+    .chip span {
+      color: var(--amber);
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      margin-right: 5px;
+    }
+    .sync-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12.5px;
+      color: var(--cyan);
+      cursor: pointer;
+      user-select: none;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+    }
+    @media (max-width: 780px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .card.featured {
+      border-color: rgba(34, 211, 238, 0.45);
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(34, 211, 238, 0.14);
+    }
+    .card-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .tag {
+      display: inline-block;
+      font-size: 11.5px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 6px;
+      margin-bottom: 4px;
+    }
+    .tag.b {
+      background: rgba(34, 211, 238, 0.16);
+      color: var(--cyan);
+    }
+    .tag.a {
+      background: rgba(245, 158, 11, 0.16);
+      color: var(--amber);
+    }
+    .card-title {
+      font-size: 17px;
+      font-weight: 800;
+    }
+    .card-desc {
+      font-size: 12.5px;
+      color: var(--muted);
+    }
+    .video-shell {
+      width: 100%;
+      max-width: 400px;
+      margin: 0 auto;
+      aspect-ratio: 9 / 16;
+      background: #000;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      position: relative;
+    }
+    video {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: contain;
+      background: #000;
+    }
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 4px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      text-decoration: none;
+      font-size: 12.5px;
+      font-weight: 600;
+      padding: 8px 13px;
+      border-radius: 9px;
+      border: 1px solid var(--border);
+      background: var(--panel-2);
+      color: var(--text);
+      transition: all 0.15s ease;
+    }
+    .btn:hover {
+      border-color: var(--cyan);
+      color: var(--cyan);
+    }
+    .btn.primary {
+      background: rgba(34, 211, 238, 0.15);
+      border-color: rgba(34, 211, 238, 0.4);
+      color: var(--cyan);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div>
+        <div class="badge-row">
+          <span class="badge emerald">CDN 直连秒播 · 无需等待云盘转码</span>
+          <span class="badge">1080×1920 · 30fps · 03:38</span>
+          <span class="badge">晓晓2代 HD Flash 配音</span>
+        </div>
+        <h1>汽车五大混动架构硬核拆解 · 方案 B vs 方案 A</h1>
+        <p class="sub">左侧为刚渲染完成的 <strong>方案 B（Three.js 3D 机械实体版）</strong>，右侧为 <strong>方案 A（2.5D 精密 CAD 线框透视版）</strong>，支持点击章节秒跳对比。</p>
+      </div>
+    </header>
+
+    <section class="chapters">
+      <div class="chapters-head">
+        <span>点击章节直接定位到关键机械拆解时刻：</span>
+        <label class="sync-toggle">
+          <input type="checkbox" id="syncPlay" />
+          同屏双画同步对比（方案 A 自动静音跟播）
+        </label>
+      </div>
+      <div class="chapter-list">
+        <button class="chip" data-time="0"><span>00:00</span>黄金钩子 · 五大流派</button>
+        <button class="chip" data-time="25"><span>00:25</span>增程式 REEV 串联流</button>
+        <button class="chip" data-time="58"><span>00:58</span>插混 DM-i 离合器咬合</button>
+        <button class="chip" data-time="93"><span>01:33</span>丰田 THS 行星齿轮组</button>
+        <button class="chip" data-time="133"><span>02:13</span>多挡 DHT 3挡换挡拨叉</button>
+        <button class="chip" data-time="171"><span>02:51</span>油电混动 vs 48V 轻混</button>
+        <button class="chip" data-time="197"><span>03:17</span>终极买车决策对照</button>
+      </div>
+    </section>
+
+    <main class="grid">
+      <!-- Scheme B first -->
+      <article class="card featured">
+        <div class="card-head">
+          <div>
+            <span class="tag b">方案 B · 第二个视频（立即可播）</span>
+            <div class="card-title">Three.js 3D 机械实体渲染版</div>
+            <p class="card-desc">WebGL 金属高光实体建模 · 3D 挤压成型行星齿轮组 · 运镜环绕与 3D 空间锚点引线标注</p>
+          </div>
+        </div>
+        <div class="video-shell">
+          <video
+            id="vidB"
+            controls
+            playsinline
+            preload="metadata"
+            poster="./videos/poster-b.jpg"
+            src="./videos/car-004-powertrain-3d.mp4"
+          ></video>
+        </div>
+        <div class="actions">
+          <a class="btn primary" href="./videos/car-004-powertrain-3d.mp4" download="car-004-powertrain-3d.mp4">⬇ 直接下载 MP4 (64 MB)</a>
+          <a class="btn" id="driveLinkB" href="https://drive.google.com/file/d/1gZntO0QZSGs1g2L3_z4M1rAlFPfj8HTj/view" target="_blank" rel="noopener">Google 云盘原档</a>
+        </div>
+      </article>
+
+      <!-- Scheme A second -->
+      <article class="card">
+        <div class="card-head">
+          <div>
+            <span class="tag a">方案 A · 第一个视频</span>
+            <div class="card-title">2.5D 精密 CAD 线框透视版</div>
+            <p class="card-desc">X-Ray 线框底盘透视 · 真实渐开线齿形啮合 · 杠杆转速图 + 离合器咬合微动效</p>
+          </div>
+        </div>
+        <div class="video-shell">
+          <video
+            id="vidA"
+            controls
+            playsinline
+            preload="metadata"
+            poster="./videos/poster-a.jpg"
+            src="./videos/car-003-powertrain-cad.mp4"
+          ></video>
+        </div>
+        <div class="actions">
+          <a class="btn primary" href="./videos/car-003-powertrain-cad.mp4" download="car-003-powertrain-cad.mp4">⬇ 直接下载 MP4 (52 MB)</a>
+          <a class="btn" href="https://drive.google.com/file/d/12OY_sc7i9QuQNyKdCMg_76aGP5BWw0Ws/view" target="_blank" rel="noopener">Google 云盘原档</a>
+        </div>
+      </article>
+    </main>
+  </div>
+
+  <script>
+    const vidB = document.getElementById('vidB');
+    const vidA = document.getElementById('vidA');
+    const syncPlay = document.getElementById('syncPlay');
+
+    vidB.addEventListener('play', () => {
+      if (syncPlay.checked) {
+        vidA.muted = true;
+        if (Math.abs(vidA.currentTime - vidB.currentTime) > 0.25) {
+          vidA.currentTime = vidB.currentTime;
+        }
+        vidA.play().catch(() => {});
+      } else if (!vidA.paused) {
+        vidA.pause();
+      }
+    });
+
+    vidB.addEventListener('pause', () => {
+      if (syncPlay.checked && !vidA.paused) vidA.pause();
+    });
+
+    vidA.addEventListener('play', () => {
+      if (!syncPlay.checked && !vidB.paused) {
+        vidB.pause();
+      }
+    });
+
+    syncPlay.addEventListener('change', () => {
+      if (syncPlay.checked) {
+        vidA.muted = true;
+        vidA.currentTime = vidB.currentTime;
+        if (!vidB.paused) vidA.play().catch(() => {});
+      } else {
+        vidA.muted = false;
+        vidA.pause();
+      }
+    });
+
+    document.querySelectorAll('.chip').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const t = Number(btn.dataset.time || 0);
+        vidB.currentTime = t;
+        vidA.currentTime = t;
+        vidB.play().catch(() => {});
+        if (syncPlay.checked) {
+          vidA.muted = true;
+          vidA.play().catch(() => {});
+        }
+      });
+    });
+  </script>
+</body>
+</html>
