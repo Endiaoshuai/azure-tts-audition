@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Azure 中文配音音色全量盲测档案 · 37 款实测对比（免费 HD Flash vs 抖音经典 vs 付费满血版）</title>
+  <meta name="description" content="收录 37 款微软 Azure 中文 TTS 语音实测对比：涵盖 DragonHD Flash 免费准高清层、抖音「注意看小帅」经典影视解说配音、方言音色及 MAI-Voice-2.1 非 Flash 付费满血版，全部原声 MP3 同步公开归档于 Google 云盘。" />
+  <meta property="og:title" content="Azure 中文配音音色全量盲测档案（37 款实测）" />
+  <meta property="og:description" content="同一句混动汽车科普台词盲测 37 款音色：实测「丰田双擎 qíng」后鼻音归韵与朗诵腔避坑指南，附 Google 云盘公开原声库。" />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600;700&family=Noto+Sans+SC:wght@400;500;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <div class="topbar">
+        <div class="studio-mark">
+          <span class="studio-led" aria-hidden="true"></span>
+          <span>AZURE SPEECH · ZH-CN ACOUSTIC ARCHIVE · 37 SAMPLES</span>
+        </div>
+        <div class="topbar-actions">
+          <a id="drive-folder-btn" class="action-link primary-drive" href="https://drive.google.com/drive/folders/1JYRJ0SeZInyzh-uEDjgn7Lm86k6QKzpP?usp=sharing" target="_blank" rel="noopener noreferrer">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+            <span>Google 云盘公开音频库</span>
+          </a>
+          <a id="github-repo-btn" class="action-link" href="https://github.com/Endiaoshuai/azure-tts-audition" target="_blank" rel="noopener noreferrer">
+            <span>GitHub 仓库</span>
+          </a>
+          <button id="theme-toggle-btn" type="button" class="icon-toggle" aria-label="切换深浅色主题">
+            <span id="theme-toggle-label">深色录音棚</span>
+          </button>
+        </div>
+      </div>
+
+      <h1 class="hero-title">Azure 中文配音音色全量盲测档案</h1>
+      <p class="hero-subtitle">
+        横跨微软 <strong>免费准高清层（DragonHD Flash / MAI-Flash，每月 50 万字 ¥0）</strong>、<strong>抖音爆款经典层（「小帅」解说本尊与东北/广西表哥方言）</strong> 以及 <strong>付费非 Flash 满血层（MAI-Voice-2.1 NeuralHD $22/M）</strong> 共 37 款实测音频。所有原声 MP3 均已公开保存在 Google 云盘，支持在线即点即听、A/B 锁定切换对比与一键复制 SSML 配置。
+      </p>
+
+      <div class="script-specimen">
+        <span class="specimen-label">统一盲测台词 · 52 字</span>
+        <span class="specimen-quote">
+          “很多人买车时一听销售讲混动就头大，其实像 <mark>e-POWER</mark>、丰田双<mark>擎（qíng）</mark>和比亚迪 <mark>DM-i</mark>，底层就干了一件事！”
+        </span>
+        <span class="specimen-meta">检验点：中英混读 + 后鼻音「擎」归韵 + 句尾情绪控制</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Editorial Verdict Summary -->
+    <section class="verdict-strip" aria-labelledby="verdict-heading">
+      <div class="verdict-header">
+        <h2 id="verdict-heading" class="verdict-heading">主理人盲测结论 · 3 款入选与付费避坑实录</h2>
+        <span class="verdict-summary">结论：多数付费版演感过重像“有感情地朗诵课文”，免费 HD Flash 反而更松弛自然</span>
+      </div>
+      <div class="verdict-picks" id="verdict-picks-container">
+        <button id="quick-pick-xiaoxiao2" type="button" class="verdict-pill-card" data-uid="free-hd-08_xiaoxiao2_hdflash">
+          <div>
+            <span class="verdict-pill-title">晓晓2代 HD Flash · 讲故事腔</span>
+            <span class="verdict-pill-sub">免费层全场最爱（¥0）·「双擎」后鼻音极正</span>
+          </div>
+          <span class="verdict-rank">TOP 1 · 免费</span>
+        </button>
+        <button id="quick-pick-mei" type="button" class="verdict-pill-card" data-uid="paid-p06_mei_joyful">
+          <div>
+            <span class="verdict-pill-title">Mei MAI-Voice-2.1 · 明快亲切</span>
+            <span class="verdict-pill-sub">付费满血版唯一入选（$22/M）· 明快不油腻</span>
+          </div>
+          <span class="verdict-rank">唯一入选 · 付费</span>
+        </button>
+        <button id="quick-pick-yunye" type="button" class="verdict-pill-card" data-uid="free-hd-07_yunye_hdflash">
+          <div>
+            <span class="verdict-pill-title">云野 HD Flash · 低沉磁性男声</span>
+            <span class="verdict-pill-sub">免费男声优选（¥0）·「双擎」后鼻音同样纯正</span>
+          </div>
+          <span class="verdict-rank">优选 · 免费</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Sticky Filter & Search Bar -->
+    <section class="controls-section" aria-label="筛选与搜索音色">
+      <div class="tabs-row">
+        <div class="category-tabs" id="category-tabs" role="tablist">
+          <button id="tab-all" type="button" class="tab-btn active" data-tab="all">全部音色 (37)</button>
+          <button id="tab-picked" type="button" class="tab-btn" data-tab="picked">严选推荐 (3)</button>
+          <button id="tab-free-hd" type="button" class="tab-btn" data-tab="free_hd">免费准高清 HD Flash (14)</button>
+          <button id="tab-douyin" type="button" class="tab-btn" data-tab="douyin_classic">抖音经典 · 小帅/方言 (13)</button>
+          <button id="tab-paid" type="button" class="tab-btn" data-tab="paid_hd">付费非 Flash 满血版 (10)</button>
+        </div>
+      </div>
+
+      <div class="subfilters-row">
+        <div class="chip-group" id="subfilter-chips">
+          <button id="chip-gender-all" type="button" class="filter-chip active" data-gender="all">全部声线</button>
+          <button id="chip-gender-female" type="button" class="filter-chip" data-gender="female">女声</button>
+          <button id="chip-gender-male" type="button" class="filter-chip" data-gender="male">男声</button>
+          <button id="chip-gender-other" type="button" class="filter-chip" data-gender="other">童声 · 方言</button>
+          <button id="chip-qing-exact" type="button" class="filter-chip" data-special="qing">「双擎 qíng」后鼻音纯正</button>
+        </div>
+        <div class="search-wrap">
+          <input id="voice-search-input" type="search" class="search-input" placeholder="搜索音色名 / Voice ID / 小帅 / 东北..." aria-label="搜索音色" />
+        </div>
+      </div>
+    </section>
+
+    <div class="results-meta">
+      <span id="results-count-text">正在加载 37 款实测音频档案…</span>
+      <span id="pinned-a-hint">提示：点击任意卡片上的「锁为 A 基准」，可随时在底栏一键切换 A/B 盲测对比</span>
+    </div>
+
+    <section id="voice-cards-grid" class="voice-grid" aria-live="polite"></section>
+
+    <footer class="site-footer">
+      <div>
+        <span>合成引擎：Microsoft Azure Cognitive Services Speech (`eastasia`) · 免费层每月 50 万字符 ¥0 / 付费 NeuralHD $22/百万字符</span>
+      </div>
+      <div>
+        <a id="footer-drive-link" href="https://drive.google.com/drive/folders/1JYRJ0SeZInyzh-uEDjgn7Lm86k6QKzpP?usp=sharing" target="_blank" rel="noopener noreferrer">Google 云盘公开原声目录</a>
+        <span> · </span>
+        <a id="footer-voices-json" href="./voices.json" target="_blank" rel="noopener noreferrer">voices.json 原始清单</a>
+      </div>
+    </footer>
+  </main>
+
+  <!-- Sticky Acoustic Transport Deck -->
+  <aside class="transport-deck" aria-label="全局音频播放控制台">
+    <div class="container deck-inner">
+      <div class="deck-main">
+        <div class="deck-left">
+          <button id="deck-prev-btn" type="button" class="deck-btn" title="上一条" aria-label="上一条音色">⏮</button>
+          <button id="deck-play-btn" type="button" class="deck-btn play-primary" title="播放 / 暂停" aria-label="播放或暂停">▶</button>
+          <button id="deck-next-btn" type="button" class="deck-btn" title="下一条" aria-label="下一条音色">⏭</button>
+          <div class="deck-track-info">
+            <div id="deck-track-title" class="deck-track-title">点击任意音色卡片开始试听对比</div>
+            <div id="deck-track-sub" class="deck-track-sub">支持顺序连播、倍速切换与 A/B 锁定盲测</div>
+          </div>
+        </div>
+
+        <canvas id="waveform-canvas" class="deck-visualizer" width="220" height="60" aria-hidden="true"></canvas>
+
+        <div class="deck-controls-right">
+          <button id="deck-ab-btn" type="button" class="deck-pill-btn" title="在锁定的 A 基准音色与当前音色之间瞬间切换">
+            A/B 切换: 晓晓2代
+          </button>
+          <button id="deck-cycle-btn" type="button" class="deck-pill-btn" title="自动顺序连播当前筛选列表">
+            顺序连播: 关
+          </button>
+          <button id="deck-speed-btn" type="button" class="deck-pill-btn" title="切换播放语速倍率">
+            1.0x
+          </button>
+          <button id="deck-copy-ssml-btn" type="button" class="deck-pill-btn" title="复制当前音色的完整 Azure SSML 代码">
+            复制 SSML
+          </button>
+        </div>
+      </div>
+
+      <div class="deck-scrubber">
+        <span id="deck-cur-time" class="time-readout">0:00</span>
+        <input id="deck-seek-slider" type="range" class="seek-slider" min="0" max="1000" value="0" aria-label="音频播放进度" />
+        <span id="deck-dur-time" class="time-readout end">0:00</span>
+      </div>
+    </div>
+  </aside>
+
+  <audio id="studio-audio" preload="metadata" crossorigin="anonymous"></audio>
+  <script src="./app.js"></script>
+</body>
+</html>
