@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>方案 3 样片秒播 · DK 百科高精剖面插画 MG 风（晓晓2代 HD Flash）</title>
+  <style>
+    :root {
+      --bg: #0c0f14;
+      --panel: #151a23;
+      --panel-2: #1c2330;
+      --border: rgba(213, 206, 192, 0.16);
+      --paper: #f4f1ea;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --amber: #f59e0b;
+      --teal: #14b8a6;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: radial-gradient(circle at 50% 0%, #1a2232 0%, var(--bg) 68%);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Noto Sans SC", system-ui, sans-serif;
+      min-height: 100vh;
+      padding: 22px 16px 56px;
+      line-height: 1.5;
+    }
+    .wrap {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+    header {
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 16px;
+      margin-bottom: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 12px;
+    }
+    .badges { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
+    .badge {
+      font-size: 12px;
+      font-weight: 700;
+      padding: 3px 11px;
+      border-radius: 999px;
+      background: rgba(20, 184, 166, 0.14);
+      color: var(--teal);
+      border: 1px solid rgba(20, 184, 166, 0.35);
+    }
+    .badge.amber {
+      background: rgba(245, 158, 11, 0.14);
+      color: var(--amber);
+      border-color: rgba(245, 158, 11, 0.35);
+    }
+    h1 { font-size: clamp(20px, 3vw, 27px); font-weight: 800; }
+    .sub { color: var(--muted); font-size: 13.5px; margin-top: 4px; }
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(300px, 430px) 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+    @media (max-width: 780px) {
+      .layout { grid-template-columns: 1fr; }
+    }
+    .phone-stage {
+      position: relative;
+      width: 100%;
+      max-width: 420px;
+      margin: 0 auto;
+      border-radius: 22px;
+      overflow: hidden;
+      background: var(--paper);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255,255,255,0.12);
+    }
+    video {
+      width: 100%;
+      aspect-ratio: 9 / 16;
+      display: block;
+      background: var(--paper);
+    }
+    .douyin-overlay {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+    .douyin-overlay.show { opacity: 1; }
+    .dy-right {
+      position: absolute;
+      right: 12px;
+      bottom: 92px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      align-items: center;
+    }
+    .dy-dot {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: rgba(15, 23, 42, 0.55);
+      border: 1.5px solid rgba(255,255,255,0.6);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(4px);
+    }
+    .dy-bottom {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 20%;
+      background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(12,15,20,0.68) 100%);
+      border-top: 1.5px dashed rgba(245, 158, 11, 0.85);
+      padding: 12px 64px 16px 14px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      color: #fff;
+    }
+    .dy-tag {
+      font-size: 11px;
+      color: #fbbf24;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .dy-handle { font-size: 14px; font-weight: 800; }
+    .dy-desc { font-size: 12px; opacity: 0.88; margin-top: 2px; }
+    .side {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px 18px;
+    }
+    .card h2 {
+      font-size: 15px;
+      font-weight: 800;
+      margin-bottom: 10px;
+      color: #e2e8f0;
+    }
+    .chips { display: flex; flex-direction: column; gap: 8px; }
+    .chip {
+      appearance: none;
+      text-align: left;
+      border: 1px solid var(--border);
+      background: var(--panel-2);
+      color: var(--text);
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-size: 13.5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .chip:hover {
+      border-color: var(--teal);
+      background: rgba(20, 184, 166, 0.1);
+    }
+    .chip code {
+      color: var(--amber);
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 12.5px;
+    }
+    .btn-row { display: flex; flex-wrap: wrap; gap: 10px; }
+    .btn {
+      appearance: none;
+      border: 1px solid rgba(245, 158, 11, 0.45);
+      background: rgba(245, 158, 11, 0.14);
+      color: #fde68a;
+      font-weight: 700;
+      font-size: 13px;
+      padding: 9px 15px;
+      border-radius: 10px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn.secondary {
+      border-color: var(--border);
+      background: var(--panel-2);
+      color: var(--text);
+    }
+    ul.spec {
+      list-style: none;
+      display: grid;
+      gap: 7px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    ul.spec b { color: var(--text); }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div>
+        <div class="badges">
+          <span class="badge">方案 3 · DK 百科高精剖面插画 MG 风</span>
+          <span class="badge amber">晓晓2代 HD Flash 配音 · 无底部字幕</span>
+        </div>
+        <h1>汽车混动底层逻辑 · 48 秒动态拆层样片</h1>
+        <p class="sub">1080×1920 竖屏 30fps · 独立透明部件运动 + 随音渐进引线 + 17.45s 原版神曲重拍卡点</p>
+      </div>
+    </header>
+
+    <div class="layout">
+      <div class="phone-stage">
+        <video
+          id="player"
+          controls
+          playsinline
+          preload="metadata"
+          poster="videos/dk-sample-poster.jpg"
+          src="videos/car-006-dk-powertrain-sample.mp4"
+        ></video>
+
+        <div id="dyOverlay" class="douyin-overlay">
+          <div class="dy-right">
+            <div class="dy-dot">赞</div>
+            <div class="dy-dot">评</div>
+            <div class="dy-dot">藏</div>
+          </div>
+          <div class="dy-bottom">
+            <div class="dy-tag">▲ 抖音底部 UI 遮挡安全线 (y = 1520)</div>
+            <div class="dy-handle">@硬核汽车科普</div>
+            <div class="dy-desc">一口气看懂纯电、增程、插混、双擎底层区别 #汽车科普 #混动原理</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="side">
+        <div class="card">
+          <h2>交互工具栏</h2>
+          <div class="btn-row">
+            <button id="toggleDy" class="btn" type="button">📱 开启「抖音手机遮挡框」实测</button>
+            <a class="btn secondary" href="videos/car-006-dk-powertrain-sample.mp4" download>⬇ 下载原画 MP4</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>点击跳转样片关键卡点（随音递进验证）</h2>
+          <div class="chips">
+            <button class="chip" data-t="0.2"><span>01 · 透视底盘入场 + 混动造词迷雾</span><code>00:00</code></button>
+            <button class="chip" data-t="8.4"><span>01B · 红线划除造词 → 油路/电路第一性高亮</span><code>00:08</code></button>
+            <button class="chip" data-t="17.4"><span>02 · 🔥 17.45s 鼓点爆发：增程咔嚓砍断传动轴</span><code>00:17</code></button>
+            <button class="chip" data-t="21.4"><span>02B · 刀片电池包弹入 + 串联高压电流驱动车轮</span><code>00:21</code></button>
+            <button class="chip" data-t="29.2"><span>03 · 丰田双擎透视总成 + 0 离合器印章 + 齿轮放大镜</span><code>00:29</code></button>
+            <button class="chip" data-t="37.8"><span>03B · 72% : 28% 功率分流条 + 41% 热效率甜区落槌</span><code>00:37</code></button>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>样片工艺清单</h2>
+          <ul class="spec">
+            <li><b>视觉流派：</b><code>ref-mg-illustrator</code>（风格锁 DK 百科无字部件插画 + Alpha 边缘抗锯齿透明扣像 + Remotion 矢量动效）</li>
+            <li><b>独立拆层精灵：</b>透视 SUV 底盘、增程发动机发电机、刀片电池包、后驱电机车轮、THS 双电机行星变速器（共 5 组高清透明 PNG）</li>
+            <li><b>配音与配乐：</b><code>zh-CN-Xiaoxiao2:DragonHDFlashLatestNeural</code> + 《开智小曲》<code>112.9 BPM</code> 自动人声闪避混音</li>
+            <li><b>手机阅读优化：</b>单屏精简大字标签、随配音逐项生长、彻底取消底部字幕（<code>y &gt; 1520</code> 留空率 <code>100%</code>）</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const v = document.getElementById('player');
+    const dy = document.getElementById('dyOverlay');
+    const btn = document.getElementById('toggleDy');
+    btn.addEventListener('click', () => {
+      const on = dy.classList.toggle('show');
+      btn.textContent = on ? '🙈 关闭「抖音手机遮挡框」' : '📱 开启「抖音手机遮挡框」实测';
+    });
+    document.querySelectorAll('.chip').forEach((el) => {
+      el.addEventListener('click', () => {
+        v.currentTime = parseFloat(el.dataset.t || '0');
+        v.play();
+      });
+    });
+  </script>
+</body>
+</html>
